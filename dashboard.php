@@ -21,7 +21,7 @@ if (!isset($_SESSION["usuario"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>inicio</title>
     <link rel="stylesheet" href="css/styles.css">
-    <script src="script.js" defer></script>
+    <script src="js/script.js" defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
     <link rel="icon" href="img/icon.png" type="image/x-icon">
 
