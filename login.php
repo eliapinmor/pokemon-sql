@@ -44,19 +44,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
 <body>
-        <header style="background-color: #FFD700; height: 150px;display: flex;flex-direction: column;gap: 15px;">
+    <header style="background-color: #FFD700; height: 150px;display: flex;flex-direction: column;gap: 15px;">
         <div style="display: flex; justify-content: space-around; width: 70%;align-items: center;">
-            <div><h1 style="margin: 0;">GRANJA POKEMON</h1></div>
-            <div style="display: flex; flex-direction:row; gap: 25px;">
-                <div><a href="#login" class="nav-button">iniciar sesión</a></div>
-                <div><a href="register.php" class="nav-button">registrarse</a></div>
-            </div>
+            <div><a href="home.php" class="nav-titulo">GRANJA POKEMON</a></div>
+
             
         </div>
     </header>
 
     <div class="form-session" id="login">
         <form method="POST" action="login.php">
+            <h2>iniciar sesión</h2>
             <label>Email:</label>
             <input type="email" name="email" required><br><br>
             <label>Contraseña:</label>

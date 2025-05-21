@@ -4,11 +4,19 @@
         "password": "test"
     },
     {
-        "email": "elia@elia.com",
+        "email": "elia@elia.elia",
         "password": "elia"
     },
     {
         "email": "elia@gmail.com",
+        "password": "1234"
+    },
+    {
+        "email": "elia@elia.com",
+        "password": "elia"
+    },
+    {
+        "email": "a@a.com",
         "password": "1234"
     }
 ]

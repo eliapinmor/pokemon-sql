@@ -21,7 +21,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $nuevoUsuario = ["email" => $email, "password" => $password];
     $usuarios[] = $nuevoUsuario;
     file_put_contents($archivo, json_encode($usuarios, JSON_PRETTY_PRINT));
-    echo "<p>Usuario registrado correctamente. Ya puedes iniciar sesión.</p>";
+    echo '<p>Usuario registrado correctamente. Ya puedes <a href="login.php">iniciar sesión</a>.</p>';
+
+
 }
 ?>
 <!DOCTYPE html>
@@ -29,10 +31,39 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <head>
     <meta charset="UTF-8">
-    <title>Registro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+    <link rel="icon" href="img/icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/styles.css?v=173">
+
+
 </head>
 
+
 <body>
+    <header style="background-color: #FFD700; height: 150px;display: flex;flex-direction: column;gap: 15px;">
+        <div style="display: flex; justify-content: space-around; width: 70%;align-items: center;">
+            <div><a href="home.php" class="nav-titulo">GRANJA POKEMON</a></div>
+
+            
+        </div>
+    </header>
+
+    <div class="form-session">
+    <form method="POST">
+        <label>Email:</label>
+        <input type="email" name="email" required><br><br>
+        <label>Contraseña:</label>
+        <input type="password" name="password" required><br><br>
+        <button type="submit">Registrarse</button>
+            <p>¿ya tienes una cuenta? <a href="login.php">inicia sesión</a></p>
+
+    </form>
+    </div>
+</body>
+
+<!-- <body>
     <h1>Registro de usuario</h1>
     <form method="POST">
         <label>Email:</label>
@@ -41,6 +72,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <input type="password" name="password" required><br><br>
         <button type="submit">Registrarse</button>
     </form>
-</body>
+</body> -->
 
 </html>

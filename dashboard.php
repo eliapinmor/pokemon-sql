@@ -20,7 +20,7 @@ if (!isset($_SESSION["usuario"])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>inicio</title>
-    <link rel="stylesheet" href="css/styles.css?v=174">
+    <link rel="stylesheet" href="css/styles.css">
     <script src="js/script.js" defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
     <link rel="icon" href="img/icon.png" type="image/x-icon">
@@ -31,14 +31,14 @@ if (!isset($_SESSION["usuario"])) {
 <body>
     <header style="background-color: #FFD700; height: 150px;display: flex;flex-direction: column;gap: 15px;">
         <div style="display: flex; justify-content: space-around; width: 70%;align-items: center;">
-            <div><a style="margin: 0;" href="home.php">GRANJA POKEMON</a></div>
+            <div><a href="home.php" class="nav-titulo">GRANJA POKEMON</a></div>
             <div style="display: flex; flex-direction:row; gap: 25px;">
                 <div><a href="logout.php" class="nav-button">cerrar sesión</a></div>
             </div>
             
         </div>
     </header>
-    <div style="display: flex; width: 70%; margin: auto; min-height: 70vh; gap: 25x; flex-direction: column;">
+    <div style="display: flex; width: 70%; margin: auto; min-height: 70vh; gap: 25px; flex-direction: column; align-items:center; justify-content: center">
         <div class="form" style="margin: auto; margin-top: 100px;display: flex; flex-direction: row; gap:45px">
             <form>
                 <div>
@@ -50,10 +50,11 @@ if (!isset($_SESSION["usuario"])) {
 
                 </div>
             </form>
+            <!-- p vacio -->
             <p class="container"></p>
         </div>
 
-        <div class="showPokeContainer">
+        <div class="showPokeContainer" style="margin: auto;">
             <div style="margin: auto;">
                 <p>REGISTROS DE POKEMON</p>
                 <div style="display: flex; align-self: center;">
