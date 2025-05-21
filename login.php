@@ -35,10 +35,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>login</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <script src="js/script.js" defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
     <link rel="icon" href="img/icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/styles.css?v=173">
 
 
 </head>
@@ -62,7 +61,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <input type="email" name="email" required><br><br>
             <label>Contraseña:</label>
             <input type="password" name="password" required><br><br>
-            <button type="submit">Entrar</button>
+            <button type="submit">login</button>
+            <p>¿no tienes cuenta? <a href="register.php">registrate</a></p>
         </form>
     </div>
 </body>

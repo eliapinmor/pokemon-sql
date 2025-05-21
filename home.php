@@ -16,12 +16,11 @@
 
 
 <body>
-        <header style="background-color: #FFD700; height: 150px;display: flex;flex-direction: column;gap: 15px;">
+    <header style="background-color: #FFD700; height: 150px;display: flex;flex-direction: column;gap: 15px;">
         <div style="display: flex; justify-content: space-around; width: 70%;align-items: center;">
             <div><h1 style="margin: 0;">GRANJA POKEMON</h1></div>
             <div style="display: flex; flex-direction:row; gap: 25px;">
-                <div><a href="login.php" class="nav-button">iniciar sesión</a></div>
-                <div><a href="register.php" class="nav-button">registrarse</a></div>
+                <div><a href="dashboard.php" class="nav-button">accede a la pokeapi</a></div>
             </div>
             
         </div>

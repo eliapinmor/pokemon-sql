@@ -20,7 +20,7 @@ if (!isset($_SESSION["usuario"])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>inicio</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/styles.css?v=174">
     <script src="js/script.js" defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
     <link rel="icon" href="img/icon.png" type="image/x-icon">
@@ -30,8 +30,12 @@ if (!isset($_SESSION["usuario"])) {
 
 <body>
     <header style="background-color: #FFD700; height: 150px;display: flex;flex-direction: column;gap: 15px;">
-        <div>
-            <h1 style="margin: 0;">GRANJA POKEMON</h1>
+        <div style="display: flex; justify-content: space-around; width: 70%;align-items: center;">
+            <div><a style="margin: 0;" href="home.php">GRANJA POKEMON</a></div>
+            <div style="display: flex; flex-direction:row; gap: 25px;">
+                <div><a href="logout.php" class="nav-button">cerrar sesión</a></div>
+            </div>
+            
         </div>
     </header>
     <div style="display: flex; width: 70%; margin: auto; min-height: 70vh; gap: 25x; flex-direction: column;">
@@ -78,7 +82,10 @@ if (!isset($_SESSION["usuario"])) {
                 </div>
             </div>
             <div class="showPoke">
-
+                <div id="emptyPlaceholder" style="text-align:center; padding: 40px;">
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png" alt="Pokébola" style="width:100px; animation: spin 3s linear infinite;"/>
+                    <p style="color: #777; font-size: 1.2rem;">Aún no has añadido ningún Pokémon.<br>¡Busca uno para empezar tu colección!</p>
+                </div>
             </div>
         </div>
     </div>

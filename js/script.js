@@ -79,27 +79,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function showPoke(pokemons = basePokemons) {
     const container = document.querySelector(".showPoke");
-    container.innerHTML = "";
+    const placeholder = document.getElementById("emptyPlaceholder");
 
+    container.innerHTML = ''; // Limpiar contenido
+    container.appendChild(placeholder); // Siempre añadir placeholder (lo ocultamos si hay pokes)
 
     if (pokemons.length === 0) {
-        container.style.display = "none";
+        placeholder.style.display = "block";
     } else {
-
-        container.style.display = "flex";
+        placeholder.style.display = "none";
         pokemons.forEach(pokemon => {
-            const pokeHTML = `
-            <div class="pokemon-card">
-            <div style="display: flex; justify-content: end">
-                <button class="delete-button" data-nombre="${pokemon.nombre}">❌</button></div>
+            const pokeCard = document.createElement("div");
+            pokeCard.classList.add("pokemon-card");
+            pokeCard.innerHTML = `
+                <div style="display: flex; justify-content: end">
+                    <button class="delete-button" data-nombre="${pokemon.nombre}">❌</button>
+                </div>
                 <h2>${pokemon.nombre}</h2>
                 <img src="${pokemon.imagen}" alt="${pokemon.nombre}" style="width: 150px;">
                 <p><strong>Tipo:</strong> ${pokemon.tipo}</p>
                 <p><strong>Habilidades:</strong> ${pokemon.habilidades}</p>
-            </div>
-        `;
-            container.innerHTML += pokeHTML;
+            `;
+            container.appendChild(pokeCard);
         });
+
         document.querySelectorAll(".delete-button").forEach(button => {
             button.addEventListener("click", function () {
                 const nombre = this.getAttribute("data-nombre");
@@ -108,6 +111,7 @@ function showPoke(pokemons = basePokemons) {
         });
     }
 }
+
 
 
 function checkPokeExists(name) {
