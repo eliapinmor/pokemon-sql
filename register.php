@@ -52,6 +52,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     <div class="form-session">
     <form method="POST">
+            <h2>registrate</h2>
+
         <label>Email:</label>
         <input type="email" name="email" required><br><br>
         <label>Contraseña:</label>

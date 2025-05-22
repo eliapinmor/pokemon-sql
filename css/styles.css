@@ -24,6 +24,9 @@ a {
 
 h1 {
     text-align: center;
+      font-family: "Potta One", system-ui;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .form form {
@@ -153,10 +156,25 @@ input.name {
     background: #FFF;
     box-shadow: 0px 4px 4px 0px #FFD700 inset, 0px 4px 4px 0px #FFD700;
     padding: 25px;
-    width: 70%;
-    display: flex;
+    width: 50%;
     margin: auto;
+    margin-top: 150px;
 }
+
+.home-content h2{
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'PokemonSolid';
+    letter-spacing: 5px;
+    color: #ff3c00;
+}
+
+.home-content p{
+    text-align: center;
+    line-height: 20px;
+    padding: 25px;
+}
+
 
 /* .form-session {
     padding: 35px;
@@ -275,4 +293,12 @@ input[type="button"] {
     font-size: 40px;
     letter-spacing: 2px;
     color: #ff3c00;
+}
+
+#home-titulo{
+    padding: 80px;
+    /* background-color: red; */
+    text-transform: uppercase;
+    width: 50%;
+    margin: auto;
 }
