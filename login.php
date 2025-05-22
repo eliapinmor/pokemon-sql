@@ -1,32 +1,36 @@
 <?php
+require 'connect.php'; // Aquí defines $mysqli
 session_start();
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $email = $_POST["email"];
-    $password = $_POST["password"];
-    $archivo = "users.json";
 
-    if (file_exists($archivo)) {
-        $usuarios = json_decode(file_get_contents($archivo), true);
-        foreach ($usuarios as $usuario) {
-            if ($usuario["email"] === $email && $usuario["password"] === $password) {
-                $_SESSION["usuario"] = $email;
-                $_SESSION["rol"] = "admin";
-                $_SESSION["fecha"] = date("Y-m-d H:i:s");
-                $_SESSION["ip"] = $_SERVER['REMOTE_ADDR'];
-                header("Location: dashboard.php");
-                exit;
-            }
+$mensaje = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!empty($_POST['username']) && !empty($_POST['password'])) {
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+
+        $stmt = $mysqli->prepare("SELECT * FROM usuarios WHERE username = ?");
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $resultado = $stmt->get_result();
+        $usuario = $resultado->fetch_assoc();
+
+        if ($usuario && password_verify($password, $usuario['password'])) {
+            $_SESSION['usuario'] = $usuario['username'];
+            header('Location: dashboard.php');
+            exit;
+        } else {
+            $mensaje = 'Credenciales incorrectas.';
         }
+
+        $stmt->close();
+    } else {
+        $mensaje = 'Por favor completa todos los campos.';
     }
-    echo "<p>Email o contraseña incorrectos.</p>";
-
-
-
 }
-
-
-    // echo "testeando= ". print_r($_SESSION,true);
 ?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -56,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <form method="POST" action="login.php">
             <h2>iniciar sesión</h2>
             <label>Email:</label>
-            <input type="email" name="email" required><br><br>
+            <input type="username" name="username" required><br><br>
             <label>Contraseña:</label>
             <input type="password" name="password" required><br><br>
             <button type="submit">login</button>

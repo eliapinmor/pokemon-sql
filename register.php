@@ -1,31 +1,43 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $email = $_POST["email"];
-    $password = $_POST["password"];
+require 'connect.php'; // Esto crea $mysqli
 
-    $archivo = "users.json";
+$mensaje = '';
 
-    if (file_exists($archivo)) {
-        $usuarios = json_decode(file_get_contents($archivo), true);
-    } else {
-        $usuarios = [];
-    }
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!empty($_POST['username']) && !empty($_POST['password'])) {
+        $username = $_POST['username'];
+        $passwordHash = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
-    foreach ($usuarios as $usuario) {
-        if ($usuario["email"] === $email) {
-            echo "<p>Este correo ya está registrado.</p>";
-            exit;
+        // Verificar si ya existe
+        $check = $mysqli->prepare("SELECT id FROM usuarios WHERE username = ?");
+        $check->bind_param("s", $username);
+        $check->execute();
+        $check->store_result();
+
+        if ($check->num_rows > 0) {
+            $mensaje = "El usuario ya está registrado. <a href='login.php'>Inicia sesión</a>";
+        } else {
+            // Insertar nuevo usuario
+            $stmt = $mysqli->prepare("INSERT INTO usuarios (username, password) VALUES (?, ?)");
+            $stmt->bind_param("ss", $username, $passwordHash);
+
+            if ($stmt->execute()) {
+                $mensaje = "Usuario registrado correctamente. <a href='login.php'>Inicia sesión</a>";
+
+            } else {
+                $mensaje = "Error al crear el usuario.";
+            }
+
+            $stmt->close();
         }
+
+        $check->close();
+    } else {
+        $mensaje = 'Por favor completa todos los campos.';
     }
-
-    $nuevoUsuario = ["email" => $email, "password" => $password];
-    $usuarios[] = $nuevoUsuario;
-    file_put_contents($archivo, json_encode($usuarios, JSON_PRETTY_PRINT));
-    echo '<p>Usuario registrado correctamente. Ya puedes <a href="login.php">iniciar sesión</a>.</p>';
-
-
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -55,10 +67,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <h2>registrate</h2>
 
         <label>Email:</label>
-        <input type="email" name="email" required><br><br>
+        <input type="username" name="username" required><br><br>
         <label>Contraseña:</label>
         <input type="password" name="password" required><br><br>
         <button type="submit">Registrarse</button>
+            <p style="font-size: 15px; color: #008000"><?php echo $mensaje; ?></p>
+
             <p>¿ya tienes una cuenta? <a href="login.php">inicia sesión</a></p>
 
     </form>

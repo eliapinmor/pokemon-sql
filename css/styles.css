@@ -232,7 +232,8 @@ input.name {
 
 /* Inputs */
 .form-session input[type="email"],
-.form-session input[type="password"] {
+.form-session input[type="password"],
+.form-session input[type="username"] {
     width: 100%;
     padding: 10px;
     border-radius: 20px;
